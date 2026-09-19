@@ -1,3 +1,8 @@
+// Calculates the complete cart amount from the current item prices and quantities.
+export function calculateCartTotal(cartItems) {
+  return cartItems.reduce((total, cartItem) => total + cartItem.price * cartItem.quantity, 0);
+}
+
 export default function CartItem({ item, onUpdateQuantity, onRemove }) {
   return (
     <article className="cart-item">

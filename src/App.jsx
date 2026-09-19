@@ -1,22 +1,21 @@
 import { useReducer, useState } from 'react';
 import AboutUs from './components/AboutUs';
 import ProductList from './components/ProductList';
-import CartItem from './components/CartItem';
+import CartItem, { calculateCartTotal } from './components/CartItem';
 import { cartReducer, initialCart } from './store/CartSlice';
 
 export default function App() {
   const [cart, dispatch] = useReducer(cartReducer, initialCart);
   const [cartOpen, setCartOpen] = useState(false);
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = calculateCartTotal(cart);
   const addToCart = (product) => { dispatch({ type: 'cart/addItem', payload: product }); setCartOpen(true); };
 
   return (
     <main>
       <header className="nav"><a className="brand" href="#top">PARADISE <span>NURSERY</span></a><nav><a href="#shop">Shop</a><a href="#about">About</a><button className="cart-toggle" onClick={() => setCartOpen(true)}>Cart <span>{itemCount}</span></button></nav></header>
-      <section className="hero" id="top">
-        <div className="hero-copy"><p className="eyebrow">Houseplants, thoughtfully grown</p><h1>Bring a little wildness <em>home.</em></h1><p className="hero-text">Easy-care plants and honest guidance for brighter rooms.</p><a className="primary-button" href="#shop">Get started</a></div>
-        <img className="hero-image" src="/hero-plants.png" alt="Monstera and pothos plants in a sunlit room" />
+      <section className="hero background-image" id="top">
+        <div className="hero-copy"><p className="eyebrow">Houseplants, thoughtfully grown</p><h1>Welcome to Paradise Nursery</h1><p className="hero-text">Easy-care plants and honest guidance for brighter rooms.</p><a className="primary-button" href="#shop">Get Started</a></div>
       </section>
       <AboutUs />
       <ProductList onAddToCart={addToCart} />

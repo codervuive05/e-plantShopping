@@ -1,4 +1,4 @@
-# Paradise Nursery
+# e-plantShopping - Paradise Nursery
 
 A responsive React plant shop application for Paradise Nursery.
 
