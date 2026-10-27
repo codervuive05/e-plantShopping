@@ -2,6 +2,10 @@
 
 A responsive React plant shop application for Paradise Nursery.
 
+Public GitHub repository: https://github.com/codervuive05/e-plantShopping
+
+Project name: e-plantShopping
+
 ## Features
 
 - Landing page with the company name and a **Get started** button

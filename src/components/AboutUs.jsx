@@ -1,6 +1,6 @@
 export default function AboutUs() {
   return (
-    <section className="about" id="about">
+    <section className="about-us-container about" id="about">
       <div>
         <p className="eyebrow">A slower kind of shopping</p>
         <h2>Plants selected for real homes.</h2>
