@@ -10,12 +10,13 @@ export const plantsArray = [...new Set(products.map((product) => product.categor
   plants: products.filter((product) => product.category === category),
 }));
 
-export function Navbar({ itemCount = 0, onOpenCart = () => {} }) {
+export function Navbar({ cart = [], onOpenCart = () => {}, onShowPlants = () => {} }) {
+  const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
   return (
-    <header className="nav">
+    <header className="navbar nav">
       <a className="brand" href="#top">PARADISE <span>NURSERY</span></a>
       <nav aria-label="Main navigation">
-        <a href="#top">Home</a><a href="#shop">Plants</a><a href="#about">About</a>
+        <a href="#top">Home</a><a href="#shop" onClick={onShowPlants}>Plants</a><a href="#about">About</a>
         <button className="cart-toggle" onClick={onOpenCart} aria-label={`Open cart, ${itemCount} items`}>
           Cart <span aria-hidden="true">{itemCount}</span>
         </button>
@@ -59,7 +60,7 @@ export default function ProductList({ onAddToCart, addedToCart = {} }) {
             if (!categoryProducts.length) return null;
             return <section className="plant-category" key={category} aria-labelledby={`category-${category}`}>
               <h3 className="category-heading" id={`category-${category}`}>{category}</h3>
-              <div className="product-grid">
+              <div className="product-list product-grid">
                 {categoryProducts.map((product) => (
                   <article className="product-card" key={product.id}>
                     <img src={product.image} alt={product.name} />
